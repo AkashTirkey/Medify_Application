@@ -1,0 +1,70 @@
+.header{
+    text-align: center;
+    font-weight: 700;
+    background-color: #2AA7FF ;
+    color: white;
+    padding: 0.1em;
+}
+
+.hero{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.hero button{
+    background-color:#2AA7FF ;
+    color: white;
+    padding: 12px 36px;
+    border-style: none;
+    border-radius: 8px;
+    width: 12%;
+}
+
+.section {
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.heroImg{
+position: absolute;
+right: 8%;
+bottom: 0;
+width: 40%;
+max-width: 500px;
+}
+
+.floatingCard{
+    border: 1px solid grey;
+    max-width: 1200px;
+    width: 70%;
+    margin: 0 auto;
+    /* justify-items: center; */
+}
+
+.form{
+    display: flex;
+    justify-content:space-around;
+}
+
+
+@media (max-width: 1024px) {
+    .heroImg{
+        width: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .heroImg{
+        position: static;
+        width: 80%;
+        margin-top: 30px;
+    }
+}
