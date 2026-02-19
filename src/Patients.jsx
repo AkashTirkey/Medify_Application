@@ -6,6 +6,9 @@ import img2 from "./assets/Patient/patient2.png"
 const Patient = () =>{
     return(
         <>
+        <div>
+
+        </div>
         
         </>
     )
