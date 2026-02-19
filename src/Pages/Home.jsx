@@ -8,6 +8,7 @@ import Specialisation from "../Specialisation";
 import Blog from "../Articles";
 import Articles from "../Articles";
 import Patient from "../Patients";
+import Families from "../Families";
 
 const Home = () => {
   return (
@@ -40,12 +41,14 @@ const Home = () => {
         <button>Search</button>
       </form>
     </div>
-    {/* <Footer/> */}
-    {/* <FAQ/> */}
 
-    {/* <Specialisation/> */}
-    {/* <Articles/> */}
+    <Specialisation/>
+
     <Patient/>
+    <Articles/>
+    <Families/>
+    <FAQ/>
+    <Footer/>
       
     </>
   );

@@ -16,7 +16,7 @@ import style from "./styles/Articles.module.css"
 const Articles = ()=>{
     return(
         <>
-        <div>
+        <div className={style.Wrapper}>
             <p style={{textAlign:"center" , color:"#2AA7FF"}}>Blog & News</p>
             <h1>Read out Latest News</h1>
             <div className={style.container}>

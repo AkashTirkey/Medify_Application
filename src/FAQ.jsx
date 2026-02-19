@@ -6,7 +6,7 @@ import small2 from './assets/hero/hover2.png'
 
 const FAQ = () => {
   return (
-    <>
+    <div className={style.Wrapper}>
     <div className={style.start}>
 
       <div className={style.heading}>
@@ -31,7 +31,7 @@ const FAQ = () => {
         </div>
       </div>
     </div>
-    </>
+    </div>
   );
 };
 
