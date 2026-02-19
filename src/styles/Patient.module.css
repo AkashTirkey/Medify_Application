@@ -1,0 +1,121 @@
+.container{
+    background-color: #E7F0FF;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 90%;
+    padding: 40px 0;
+    display: flex;
+     align-items: center;
+    justify-content: space-around; 
+}
+
+.leftContent{
+    position: relative;
+    width: 100%;
+    width: 320px;
+    height: 520px;
+}
+
+.firstPatient{
+    position: absolute;
+    object-fit: cover;
+    width:90%;
+    top: 10%;
+    left: 30%;
+    z-index: 1;
+
+}
+
+.secondPatient{
+    position:absolute;
+    object-fit: cover;
+    width: 90%;
+    bottom: 20%;
+    left: 1%;
+    z-index: 2;
+}
+
+.hoverImg{
+    position: relative;
+    top: 20%;
+    left: 0;
+    object-fit: cover;
+    width: 60%;
+    z-index: 2;
+}
+
+
+.rightContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    max-width: 500px;
+}
+
+.listItems{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rightContent h1{
+    font-size: 3em;
+    margin: 2px 0;
+}
+
+.rightContent ul{
+    padding: 0;
+}
+
+.rightContent ul li{
+    list-style: none;
+}
+
+.rightContent ul li::before{
+    content: "✔️";
+}
+
+@media (max-width:992px) {
+    .container{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .rightContent{
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .rightContent ul{
+        text-align: left;
+    }
+
+    .leftContent{
+        margin-bottom: 30px;
+    }
+
+    .hoverImg{
+        position: static;
+    }
+
+    .firstPatient{
+        position: static;
+    }
+
+    .secondPatient{
+        position: static;
+    }
+}
+
+@media (max-width:576px) {
+    .rightContent h1{
+        font-size: 2em;
+    }
+
+    .leftContent{
+        height: 450px;
+    }
+}

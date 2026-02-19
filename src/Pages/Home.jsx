@@ -7,6 +7,7 @@ import FAQ from "../FAQ";
 import Specialisation from "../Specialisation";
 import Blog from "../Articles";
 import Articles from "../Articles";
+import Patient from "../Patients";
 
 const Home = () => {
   return (
@@ -44,6 +45,7 @@ const Home = () => {
 
     {/* <Specialisation/> */}
     {/* <Articles/> */}
+    <Patient/>
       
     </>
   );
