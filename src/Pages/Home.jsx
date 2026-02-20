@@ -9,6 +9,8 @@ import Blog from "../Articles";
 import Articles from "../Articles";
 import Patient from "../Patients";
 import Families from "../Families";
+import Doctors from "../Doctors";
+import Consult from "../ConsultationImages";
 
 const Home = () => {
   return (
@@ -41,9 +43,9 @@ const Home = () => {
         <button>Search</button>
       </form>
     </div>
-
+    <Consult/>
     <Specialisation/>
-
+      <Doctors/>
     <Patient/>
     <Articles/>
     <Families/>
