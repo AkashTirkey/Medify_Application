@@ -35,19 +35,59 @@ width: 40%;
 max-width: 500px;
 }
 
-.floatingCard{
-    border: 1px solid grey;
+
+.formContainer{
     max-width: 1200px;
-    width: 70%;
     margin: 0 auto;
-    /* justify-items: center; */
+    width: 80%;
+    padding: 45px 60px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 15px 5px 15px 15px rgba(0,0,0,0.08);
 }
 
-.form{
+.formInp{
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
+    gap: 5px;
+    /* margin-bottom: 10px; */
 }
 
+.formInp input{
+    padding: 10px 30px;
+    border-radius: 8px;
+}
+
+.inputbtn{
+    padding: 5px 20px;
+    border-radius: 10px;
+}
+
+.hTag{
+    padding-top: 50px;
+}
+
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 30px;
+}
+
+.card{
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.card img{
+    width: 40%;
+    height: 50%;
+    object-fit: contain;
+    border-radius: 8px;
+    padding-top: 10px;
+}
 
 @media (max-width: 1024px) {
     .heroImg{

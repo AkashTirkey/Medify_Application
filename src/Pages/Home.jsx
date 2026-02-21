@@ -11,6 +11,19 @@ import Patient from "../Patients";
 import Families from "../Families";
 import Doctors from "../Doctors";
 import Consult from "../ConsultationImages";
+import doctor from "../assets/Search/Doctor.png"
+import drugstore from '../assets/Search/Drugstore (3).png'
+import hosp from "../assets/Search/Hospital (1).png"
+import capsule from "../assets/Search/Capsule.png"
+import ambulance from "../assets/Search/Ambulance.png"
+
+const Search = [
+  {name:"Doctor", image:doctor},
+  {name:"Drugstore", image:drugstore},
+  {name:"Hospital", image:hosp},
+  {name:"Capsule", image:capsule},
+  {name:"Ambulance", image:ambulance}
+]
 
 const Home = () => {
   return (
@@ -36,12 +49,21 @@ const Home = () => {
         <img src={doc} alt="Doctors_img" className={styles.heroImg} />
       </div>
 
-    <div className={styles.floatingCard}>
-      <form className={styles.form}>
+    <div className={styles.formContainer}>
+      <form className={styles.formInp}>
         <input type="text" placeholder="State"/>
         <input type="text" placeholder="City"/>
-        <button>Search</button>
+        <button className={styles.inputbtn}>Search</button>
       </form>
+      <h3 className={styles.hTag}>You Maybe Looking for</h3>
+      <div className={styles.gridContainer}>
+          {Search.map((item,index)=>(
+            <div key={index} className={styles.card}>
+                <img src={item.image} alt={item.name} />
+                <p style={{color:"#ABB6C7"}}>{item.name}</p>
+            </div>
+          ))}
+      </div>
     </div>
     <Consult/>
     <Specialisation/>
