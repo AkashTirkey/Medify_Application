@@ -39,7 +39,7 @@ max-width: 500px;
 .formContainer{
     max-width: 1200px;
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     padding: 45px 60px;
     text-align: center;
     background-color: white;
@@ -48,14 +48,15 @@ max-width: 500px;
 
 .formInp{
     display: flex;
-    justify-content: space-around;
-    gap: 5px;
+    justify-content: space-between;
+    gap: 15px;
     /* margin-bottom: 10px; */
 }
 
 .formInp input{
-    padding: 10px 30px;
+    padding: 12px 15px;
     border-radius: 8px;
+    width: 100%;
 }
 
 .inputbtn{
@@ -69,7 +70,7 @@ max-width: 500px;
 
 .gridContainer{
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 30px;
 }
 
@@ -82,8 +83,9 @@ max-width: 500px;
 }
 
 .card img{
-    width: 40%;
-    height: 50%;
+    width: 60%;
+    height: auto;
+    max-width: 80px;
     object-fit: contain;
     border-radius: 8px;
     padding-top: 10px;
@@ -106,5 +108,14 @@ max-width: 500px;
         position: static;
         width: 80%;
         margin-top: 30px;
+    }
+
+    .formInp{
+        flex-direction: column;
+    }
+
+    .formInp input,
+    .inputbtn{
+        width: 100%;
     }
 }
