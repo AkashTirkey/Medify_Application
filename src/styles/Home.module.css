@@ -1,36 +1,44 @@
 .header{
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     background-color: #2AA7FF ;
     color: white;
     padding: 0.1em;
 }
 
 .hero{
-    max-width: 1300px;
-    margin: 0 auto;
+    max-width: 600px;
+    width: 90%;
+    /* margin: 0 auto; */
     padding: 0 24px;
+    text-align: left;
 }
 
 .hero button{
     background-color:#2AA7FF ;
     color: white;
-    padding: 12px 36px;
+    font-weight: 600;
+    padding: 10px 30px;
     border-style: none;
     border-radius: 8px;
-    width: 12%;
 }
 
 .section {
-    position: relative;
-    padding: 80px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 5%;
     overflow: hidden;
+    margin-bottom: 0px;
 }
 
 .heroImg{
-position: absolute;
+/* position: absolute;
 right: 8%;
 bottom: 0;
+width: 40%;
+max-width: 500px; */
+position: static;
 width: 40%;
 max-width: 500px;
 }
@@ -44,6 +52,8 @@ max-width: 500px;
     text-align: center;
     background-color: white;
     box-shadow: 15px 5px 15px 15px rgba(0,0,0,0.08);
+    margin-bottom: 5%;
+    margin-top: 0%;
 }
 
 .formInp{
@@ -127,9 +137,9 @@ max-width: 500px;
         width: 100%;
     }
     .section{
-        display: flex;
+        /* display: flex; */
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
 
     .heroImg{
@@ -142,7 +152,7 @@ max-width: 500px;
         flex-direction: column;
     }
 
-    .formInp input,
+    .inputWrapper,
     .inputbtn{
         width: 100%;
     }

@@ -40,8 +40,8 @@ const Home = () => {
       <div className={styles.section}>
         <div className={styles.hero}>
           <h2 style={{fontSize:"31px" , letterSpacing:"2%"}}>Skip the Travel! Find Online</h2>
-          <h1 style={{fontSize:"56px"}}>Medical <span style={{color:"#2AA7FF"}}>Centers</span></h1>
-          <p style={{color:"#5C6169" , fontSize:"20px", letterSpacing:"2%"}}>
+          <h1 style={{fontSize:"50px"}}>Medical <span style={{color:"#2AA7FF"}}>Centers</span></h1>
+          <p style={{color:"#5C6169" , fontSize:"18px", letterSpacing:"1%"}}>
             Connect instantly with a 24x7 specialist or choose to video visit a
             particular doctor.
           </p>

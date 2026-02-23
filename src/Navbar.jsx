@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from './styles/Navbar.module.css'
 import pic from './assets/hero/Medify.png'
 
 const Navbar = ()=>{
+
+    const[open,setOpen]= useState(false);
     return(
         <>
         <div className={styles.navbar}>
         {/* <p style={{fontWeight:750}}>Medify</p> */}
         <img src={pic} alt="medify-logo" />
-        <ul className={styles.menu}>
+
+        <div className={styles.hamburger} onClick={() => setOpen(!open)}>
+            ☰
+        </div>
+        <ul className={`${styles.menu} ${open ? styles.active : ""}`}>
             <li>Find Doctors</li>
             <li>Hospitals</li>
             <li>Medicines</li>
