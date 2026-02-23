@@ -6,6 +6,7 @@ import Footer from "../FooterPage";
 import FAQ from "../FAQ";
 import Specialisation from "../Specialisation";
 import Blog from "../Articles";
+import { FiMapPin } from "react-icons/fi";
 import Articles from "../Articles";
 import Patient from "../Patients";
 import Families from "../Families";
@@ -23,16 +24,16 @@ const Search = [
   {name:"Hospital", image:hosp},
   {name:"Capsule", image:capsule},
   {name:"Ambulance", image:ambulance}
-]
+];
 
 const Home = () => {
   return (
     <>
       <div className={styles.header}>
         <p>
-          The health and well being of out patients and their health care team
+          The health and well being of our patients and their health care team
           will always be our priority, so we follow the best practices for
-          cleanlines!
+          cleanliness!
         </p>
       </div>
       <Navbar />
@@ -50,11 +51,22 @@ const Home = () => {
       </div>
 
     <div className={styles.formContainer}>
+
+
       <form className={styles.formInp}>
-        <input type="text" placeholder="State"/>
+
+        <div className={styles.inputWrapper}>
+          <FiMapPin className={styles.icon}/>
+          <input type="text" placeholder="State"/>
+        </div>
+        <div className={styles.inputWrapper}>
+        <FiMapPin className={styles.icon}/>
         <input type="text" placeholder="City"/>
+        </div>
         <button className={styles.inputbtn}>Search</button>
       </form>
+
+
       <h3 className={styles.hTag}>You Maybe Looking for</h3>
       <div className={styles.gridContainer}>
           {Search.map((item,index)=>(

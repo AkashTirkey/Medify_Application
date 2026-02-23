@@ -53,15 +53,39 @@ max-width: 500px;
     /* margin-bottom: 10px; */
 }
 
-.formInp input{
+.inputWrapper{
+    position: relative;
+    flex: 1;
+}
+
+.inputWrapper input{
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.icon{
+    position: absolute;
+    left: 20px;
+    top: 30%;
+    transform: translate(-50%);
+    /* color: #2AA7FF; */
+    font-size: 16px;
+}
+
+/* .formInp input{
     padding: 12px 15px;
     border-radius: 8px;
     width: 100%;
-}
+    cursor: inherit;
+} */
 
 .inputbtn{
     padding: 5px 20px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .hTag{
@@ -98,6 +122,10 @@ max-width: 500px;
 }
 
 @media (max-width: 768px) {
+    
+    .header{
+        width: 100%;
+    }
     .section{
         display: flex;
         flex-direction: column;
