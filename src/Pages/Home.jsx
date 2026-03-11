@@ -1,5 +1,6 @@
-import React , {useState}from "react";
+import React , {useState,useEffect }from "react";
 import styles from "../styles/Home.module.css";
+import axios from "axios"
 import Navbar from "../Navbar";
 import doc from "../assets/hero/NicePng_doctor-png_336282 1.png";
 import Footer from "../FooterPage";
@@ -29,6 +30,46 @@ const Search = [
 const Home = () => {
 //states
 const[selectedCard, setSelectedCard] = useState(null);
+const [states, setStates] = useState([]);
+const [cities, setCities] = useState([]);
+
+const [selectedState, setSelectedState] = useState("");
+const [selectedCity, setSelectedCity] = useState("");
+
+useEffect(() => {
+
+ const fetchStates = async () =>{
+  try{
+    const res = await axios.get("https://meddata-backend.onrender.com/states");
+    const data = res.data;
+
+    setStates(data);
+  }catch(error){
+    console.error(error);
+  }
+ }
+
+  fetchStates();
+
+}, []);
+
+const handleStateChange = async (e) =>{
+
+  const state = e.target.value;
+  setSelectedState(state);
+
+  try{
+    const res = await axios.get(`https://meddata-backend.onrender.com/cities/${state}`);
+
+    const data = res.data;
+
+    setCities(data);
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
   return (
     <>
       <div className={styles.header}>
@@ -59,11 +100,28 @@ const[selectedCard, setSelectedCard] = useState(null);
 
         <div className={styles.inputWrapper}>
           <FiMapPin className={styles.icon}/>
-          <input type="text" placeholder="State"/>
+          {/* <input type="text" placeholder="State"/> */}
+          <select onChange={handleStateChange}>
+              <option>Select State</option>
+
+              {states.map((state,index) =>(
+                <option key={index} value={state}>{state}</option>
+              ))}
+          </select>
         </div>
         <div className={styles.inputWrapper}>
         <FiMapPin className={styles.icon}/>
-        <input type="text" placeholder="City"/>
+        {/* <input type="text" placeholder="City"/> */}
+        <select onChange={(e) =>setSelectedCity(e.target.value)} disabled={!selectedState}>
+          <option>Select City</option>
+
+          {cities.map((city,index)=>(
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
+
+        </select>
         </div>
         <button className={styles.inputbtn}>Search</button>
       </form>
