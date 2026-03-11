@@ -1,4 +1,5 @@
 import React , {useState,useEffect }from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/Home.module.css";
 import axios from "axios"
 import Navbar from "../Navbar";
@@ -35,6 +36,13 @@ const [cities, setCities] = useState([]);
 
 const [selectedState, setSelectedState] = useState("");
 const [selectedCity, setSelectedCity] = useState("");
+
+const navigate = useNavigate();
+const handleSearch = (e) =>{
+    e.preventDefault(); 
+  navigate(`/hospitals?state=${selectedState}&city=${selectedCity}`)
+}
+
 
 useEffect(() => {
 
@@ -123,7 +131,7 @@ const handleStateChange = async (e) =>{
 
         </select>
         </div>
-        <button className={styles.inputbtn}>Search</button>
+        <button className={styles.inputbtn} onClick={handleSearch}>Search</button>
       </form>
 
 
