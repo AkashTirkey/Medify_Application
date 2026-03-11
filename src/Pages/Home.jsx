@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState}from "react";
 import styles from "../styles/Home.module.css";
 import Navbar from "../Navbar";
 import doc from "../assets/hero/NicePng_doctor-png_336282 1.png";
@@ -27,6 +27,8 @@ const Search = [
 ];
 
 const Home = () => {
+//states
+const[selectedCard, setSelectedCard] = useState(null);
   return (
     <>
       <div className={styles.header}>
@@ -70,7 +72,10 @@ const Home = () => {
       <h3 className={styles.hTag}>You Maybe Looking for</h3>
       <div className={styles.gridContainer}>
           {Search.map((item,index)=>(
-            <div key={index} className={styles.card}>
+            <div key={index} 
+            className={`${styles.card} ${selectedCard === index ? styles.activeCard : ""}`}
+            onClick={() => setSelectedCard(index)}
+            >
                 <img src={item.image} alt={item.name} />
                 <p style={{color:"#ABB6C7"}}>{item.name}</p>
             </div>
