@@ -76,6 +76,55 @@
   background-color: #1b8fd8;
 }
 
+/* slots section css */
+.slotsContainer{
+margin-top:20px;
+border-top:1px solid #eee;
+padding-top:20px;
+}
+
+.daysRow{
+display:flex;
+gap:40px;
+margin-bottom:20px;
+font-weight:600;
+}
+
+.daysRow span{
+color:green;
+font-weight:500;
+font-size:14px;
+}
+
+.timeSection{
+margin-bottom:15px;
+}
+
+.timeSection p{
+font-weight:600;
+margin-bottom:8px;
+}
+
+.times{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.times span{
+border:1px solid #2AA7FF;
+padding:6px 10px;
+border-radius:5px;
+font-size:13px;
+cursor:pointer;
+transition:0.2s;
+}
+
+.times span:hover{
+background:#2AA7FF;
+color:white;
+}
+
 
 @media (max-width: 900px) {
 
