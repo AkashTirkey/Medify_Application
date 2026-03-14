@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import styles from './styles/Navbar.module.css'
 import pic from './assets/hero/Medify.png'
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Navbar = ()=>{
+
+    const navigate = useNavigate();
 
     const[open,setOpen]= useState(false);
     return(
         <>
         <div className={styles.navbar}>
         {/* <p style={{fontWeight:750}}>Medify</p> */}
-        <img src={pic} alt="medify-logo" />
+        <img src={pic} alt="medify-logo" style={{cursor:"pointer"}} onClick={()=> navigate('/')} />
 
         <div className={styles.hamburger} onClick={() => setOpen(!open)}>
             ☰
@@ -21,7 +24,7 @@ const Navbar = ()=>{
             <li>Surgeries</li>
             <li>Software for Provider</li>
             <li>Facilities</li>
-            <button>My Bookings</button>
+            <button onClick={()=> navigate('/bookings')}>My Bookings</button>
         </ul>
         </div>
         </>

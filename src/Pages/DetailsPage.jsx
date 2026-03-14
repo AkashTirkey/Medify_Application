@@ -7,8 +7,11 @@ import Footer from "../FooterPage";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import SearchForm from "../SearchForm";
+import { useNavigate } from "react-router-dom";
 
 const Hospitals = () => {
+
+  const navigate = useNavigate();
 
   const [selectedDay, setSelectedDay] = useState("today");
   const [openIndex, setOpenIndex] = useState(null);
@@ -49,6 +52,8 @@ const Hospitals = () => {
     alert("Booking Confirmed 🎉");
 
     setSelectedTime(null);
+
+    navigate("/bookings"); //redirect to the booking page
   };
 
   useEffect(() => {
