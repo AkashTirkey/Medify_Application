@@ -1,126 +1,231 @@
-import React ,{useState,useEffect}from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
-import styles from "../styles/Details.module.css"
-import hosp from "../assets/Hospital/hosp.png"
+import styles from "../styles/Details.module.css";
+import hosp from "../assets/Hospital/hosp.png";
 import FAQ from "../FAQ";
 import Footer from "../FooterPage";
 import { useSearchParams } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import SearchForm from "../SearchForm";
 
-const Hospitals = ()=>{
+const Hospitals = () => {
 
-    //states
-    const[openIndex,setOpenIndex] = useState(null);
-    const toggleSlots = (index) => {
-        setOpenIndex(openIndex == index ? null : index);
-    }
+  const [selectedDay, setSelectedDay] = useState("today");
+  const [openIndex, setOpenIndex] = useState(null);
 
-    const [searchParams] = useSearchParams();
-    const state = searchParams.get("state");
-    const city = searchParams.get("city")
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedCenter, setSelectedCenter] = useState(null);
 
-    const [hospitals,setHospitals] = useState([]);
+  const toggleSlots = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+    setSelectedTime(null);
+  };
 
-    useEffect(() =>{
-        const fetchHospitals = async () =>{
-            const res = await axios.get(`https://meddata-backend.onrender.com/data?state=${state}&city=${city}`);
-            setHospitals(res.data);
-        }
-        fetchHospitals();
-    },[state,city])
+  const [searchParams] = useSearchParams();
+  const state = searchParams.get("state");
+  const city = searchParams.get("city");
 
+  const [hospitals, setHospitals] = useState([]);
 
-    return(
-        <div className={styles.container}>
-             <div className={styles.header}>
-                    <p>
-                      The health and well being of our patients and their health care team
-                      will always be our priority, so we follow the best practices for
-                      cleanliness!
-                    </p>
-                  </div>
-            <Navbar/>
-            <SearchForm/>
-            <h1>{hospitals.length} medical Centers available in {city}</h1>
-            <p>Book appointments with minimum wait time and verified doctor details</p>
+  // Booking Function
+  const handleBooking = () => {
 
-           {hospitals.map((hospital,index) =>(
-  <div key={index}>
+    const booking = {
+      hospitalName: selectedCenter["Hospital Name"],
+      address: selectedCenter["Address"],
+      city: selectedCenter["City"],
+      state: selectedCenter["State"],
+      day: selectedDay,
+      time: selectedTime
+    };
 
-    {/* Hospital Card */}
-    <div className={styles.card}>
-      <img src={hosp} alt="hospital" className={styles.image} />
+    const existingBookings =
+      JSON.parse(localStorage.getItem("bookings")) || [];
 
-      <div className={styles.info}>
-        <h3 className={styles.name}>
-          {hospital["Hospital Name"]}
-        </h3>
+    existingBookings.push(booking);
 
-        <p className={styles.address}>
-          {hospital["Address"]}, {hospital["City"]}, {hospital["State"]}
-        </p>
+    localStorage.setItem("bookings", JSON.stringify(existingBookings));
 
-        <p className={styles.available}>
-          Available Today
+    alert("Booking Confirmed 🎉");
+
+    setSelectedTime(null);
+  };
+
+  useEffect(() => {
+    const fetchHospitals = async () => {
+      const res = await axios.get(
+        `https://meddata-backend.onrender.com/data?state=${state}&city=${city}`
+      );
+      setHospitals(res.data);
+    };
+
+    fetchHospitals();
+  }, [state, city]);
+
+  const morningSlots = ["09:00 AM", "09:30 AM", "10:00 AM"];
+  const afternoonSlots = ["01:00 PM", "01:30 PM", "02:00 PM"];
+  const eveningSlots = ["05:00 PM", "05:30 PM", "06:00 PM"];
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <p>
+          The health and well being of our patients and their health care team
+          will always be our priority.
         </p>
       </div>
 
-      <button
-        className={styles.button}
-        onClick={() => toggleSlots(index)}
-      >
-        Book Free Center Visit
-      </button>
+      <Navbar />
+      <SearchForm />
+
+      <h1>{hospitals.length} medical Centers available in {city}</h1>
+      <p>Book appointments with minimum wait time and verified doctor details</p>
+
+      {hospitals.map((hospital, index) => (
+
+        <div key={index}>
+
+          {/* Hospital Card */}
+          <div className={styles.card}>
+            <img src={hosp} alt="hospital" className={styles.image} />
+
+            <div className={styles.info}>
+              <h3 className={styles.name}>{hospital["Hospital Name"]}</h3>
+
+              <p className={styles.address}>
+                {hospital["Address"]}, {hospital["City"]}, {hospital["State"]}
+              </p>
+
+              <p className={styles.available}>Available Today</p>
+            </div>
+
+            <button
+              className={styles.button}
+              onClick={() => toggleSlots(index)}
+            >
+              Book Free Center Visit
+            </button>
+          </div>
+
+          {/* Slots */}
+          {openIndex === index && (
+
+            <div className={styles.slotsContainer}>
+
+              {/* Days */}
+              <div className={styles.daysRow}>
+
+                <div
+                  className={`${styles.day} ${selectedDay === "today" ? styles.activeDay : ""}`}
+                  onClick={() => setSelectedDay("today")}
+                >
+                  <p>Today</p>
+                </div>
+
+                <div
+                  className={`${styles.day} ${selectedDay === "tomorrow" ? styles.activeDay : ""}`}
+                  onClick={() => setSelectedDay("tomorrow")}
+                >
+                  <p>Tomorrow</p>
+                </div>
+
+                <div
+                  className={`${styles.day} ${selectedDay === "friday" ? styles.activeDay : ""}`}
+                  onClick={() => setSelectedDay("friday")}
+                >
+                  <p>Friday</p>
+                </div>
+
+              </div>
+
+
+              {/* Morning */}
+              <div className={styles.timeSection}>
+                <p>Morning</p>
+                <div className={styles.times}>
+                  {morningSlots.map((time) => (
+                    <span
+                      key={time}
+                      className={
+                        selectedTime === time ? styles.activeSlot : ""
+                      }
+                      onClick={() => {
+                        setSelectedTime(time);
+                        setSelectedCenter(hospital);
+                      }}
+                    >
+                      {time}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+
+              {/* Afternoon */}
+              <div className={styles.timeSection}>
+                <p>Afternoon</p>
+                <div className={styles.times}>
+                  {afternoonSlots.map((time) => (
+                    <span
+                      key={time}
+                      className={
+                        selectedTime === time ? styles.activeSlot : ""
+                      }
+                      onClick={() => {
+                        setSelectedTime(time);
+                        setSelectedCenter(hospital);
+                      }}
+                    >
+                      {time}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+
+              {/* Evening */}
+              <div className={styles.timeSection}>
+                <p>Evening</p>
+                <div className={styles.times}>
+                  {eveningSlots.map((time) => (
+                    <span
+                      key={time}
+                      className={
+                        selectedTime === time ? styles.activeSlot : ""
+                      }
+                      onClick={() => {
+                        setSelectedTime(time);
+                        setSelectedCenter(hospital);
+                      }}
+                    >
+                      {time}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+
+              {/* Book Now Button */}
+              {selectedTime && selectedCenter === hospital && (
+                <button
+                  className={styles.bookBtn}
+                  onClick={handleBooking}
+                >
+                  Book Now
+                </button>
+              )}
+
+            </div>
+          )}
+
+        </div>
+
+      ))}
+
+      <FAQ />
+      <Footer />
     </div>
-
-
-    {/* Slots Section (appears when clicked) */}
-    {openIndex === index && (
-      <div className={styles.slotsContainer}>
-
-        <div className={styles.daysRow}>
-          <div>Today <span>8 Slots Available</span></div>
-          <div>Tomorrow <span>10 Slots Available</span></div>
-          <div>Friday <span>6 Slots Available</span></div>
-        </div>
-
-        <div className={styles.timeSection}>
-          <p>Morning</p>
-          <div className={styles.times}>
-            <span>09:00 AM</span>
-            <span>09:30 AM</span>
-            <span>10:00 AM</span>
-          </div>
-        </div>
-
-        <div className={styles.timeSection}>
-          <p>Afternoon</p>
-          <div className={styles.times}>
-            <span>01:00 PM</span>
-            <span>01:30 PM</span>
-            <span>02:00 PM</span>
-          </div>
-        </div>
-
-        <div className={styles.timeSection}>
-          <p>Evening</p>
-          <div className={styles.times}>
-            <span>05:00 PM</span>
-            <span>05:30 PM</span>
-            <span>06:00 PM</span>
-          </div>
-        </div>
-
-      </div>
-    )}
-
-  </div>
-))}
-            <FAQ/>
-            <Footer/>
-        </div>
-    )
-}
+  );
+};
 
 export default Hospitals;
