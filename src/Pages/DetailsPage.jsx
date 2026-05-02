@@ -11,26 +11,50 @@ import { useNavigate } from "react-router-dom";
 
 const Hospitals = () => {
 
+  //Full Flow (Search Page
+    // 👇
+// URL params (city, state)
+//    ↓
+// Hospitals Page
+//    ↓
+// Fetch hospitals
+//    ↓
+// User selects hospital
+//    ↓
+// User selects time
+//    ↓
+// Booking saved in localStorage
+//    ↓
+// Redirect to Bookings Page)
+  
+  
+
   const navigate = useNavigate();
 
+  // 6. Day Selection- users can pick today tomorrow  Friday
   const [selectedDay, setSelectedDay] = useState("today");
   const [openIndex, setOpenIndex] = useState(null);
 
+  // 7. Time Slot Selection 
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedCenter, setSelectedCenter] = useState(null);
 
+
+  //Toggle System - Accordion Behaviour, click same card - close it , click diff card - switch, reset time.
   const toggleSlots = (index) => {
     setOpenIndex(openIndex === index ? null : index);
     setSelectedTime(null);
   };
 
+
+  //1. Entry Point - Search params store state and city so page knows what to fetch.
   const [searchParams] = useSearchParams();
   const state = searchParams.get("state");
   const city = searchParams.get("city");
 
   const [hospitals, setHospitals] = useState([]);
 
-  // Booking Function
+  // 9.1. Booking Function (localStorage)
   const handleBooking = () => {
 
     const booking = {
@@ -42,13 +66,17 @@ const Hospitals = () => {
       time: selectedTime
     };
 
+    // 9.2.Get existing Bookings.
     const existingBookings =
       JSON.parse(localStorage.getItem("bookings")) || [];
 
+      //9.3 -  add new Booking
     existingBookings.push(booking);
 
+      //9.4 - Save back
     localStorage.setItem("bookings", JSON.stringify(existingBookings));
 
+    //9.5 Feedback + redirect
     alert("Booking Confirmed 🎉");
 
     setSelectedTime(null);
@@ -56,6 +84,7 @@ const Hospitals = () => {
     navigate("/bookings"); //redirect to the booking page
   };
 
+  //2. Fetching Hospitals - API call , whenever state and city changes API is called hospitals are stores.
   useEffect(() => {
     const fetchHospitals = async () => {
       const res = await axios.get(
@@ -86,6 +115,7 @@ const Hospitals = () => {
       <h1>{hospitals.length} medical Centers available in {city}</h1>
       <p>Book appointments with minimum wait time and verified doctor details</p>
 
+      {/* Rendering Cards - image,name,address,button*/}
       {hospitals.map((hospital, index) => (
 
         <div key={index}>
@@ -112,7 +142,7 @@ const Hospitals = () => {
             </button>
           </div>
 
-          {/* Slots */}
+          {/* 5.Showing Slots */}
           {openIndex === index && (
 
             <div className={styles.slotsContainer}>
@@ -120,6 +150,7 @@ const Hospitals = () => {
               {/* Days */}
               <div className={styles.daysRow}>
 
+                {/* 6. Day selection - users can pick today tomorrow friday */}
                 <div
                   className={`${styles.day} ${selectedDay === "today" ? styles.activeDay : ""}`}
                   onClick={() => setSelectedDay("today")}
@@ -154,6 +185,7 @@ const Hospitals = () => {
                       className={
                         selectedTime === time ? styles.activeSlot : ""
                       }
+                      // 7. Time Slot selection - when user clicks a time you store which time and hospital.
                       onClick={() => {
                         setSelectedTime(time);
                         setSelectedCenter(hospital);
@@ -210,7 +242,7 @@ const Hospitals = () => {
               </div>
 
 
-              {/* Book Now Button */}
+              {/*8. Book Now Button logic (very important) */}
               {selectedTime && selectedCenter === hospital && (
                 <button
                   className={styles.bookBtn}
