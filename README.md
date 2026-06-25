@@ -1,18 +1,203 @@
-# React + Vite
+# 🏥 Medify - Healthcare Appointment Booking Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Medify is a responsive healthcare appointment booking application that enables users to search for hospitals and medical centers based on location, view available facilities, select appointment slots, and manage their bookings seamlessly.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search hospitals by State and City
+- View available medical centers
+- Book appointments with preferred date and time slots
+- View and manage booked appointments
+- Dynamic data fetching from APIs
+- Local storage persistence for bookings
+- Fully responsive user interface
+- Clean and reusable component architecture
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Frontend
+- React.js
+- React Router DOM
+- JavaScript (ES6+)
+- CSS Modules
 
-Note: This will impact Vite dev & build performances.
+### APIs
+- REST APIs provided by Crio.Do
 
-## Expanding the ESLint configuration
+### Storage
+- Local Storage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📂 Project Structure
+
+```bash
+src/
+│
+├── Pages/
+│   ├── Home.jsx
+│   ├── DetailsPage.jsx
+│   └── BookingsPg.jsx
+│
+├── assets/
+│   ├── Consultation/
+│   ├── Dept/
+│   ├── Doctors/
+│   ├── Families/
+│   ├── Hospital/
+│   ├── Patient/
+│   ├── Search/
+│   └── hero/
+│
+├── styles/
+│   ├── Articles.module.css
+│   ├── Consultation.module.css
+│   ├── Details.module.css
+│   ├── Doctors.module.css
+│   ├── FAQ.module.css
+│   ├── Families.module.css
+│   ├── Footer.module.css
+│   ├── Home.module.css
+│   ├── Navbar.module.css
+│   ├── Patient.module.css
+│   ├── SearchForm.module.css
+│   └── Specialisation.module.css
+│
+├── Articles.jsx
+├── ConsultationImages.jsx
+├── Doctors.jsx
+├── FAQ.jsx
+├── Families.jsx
+├── FooterPage.jsx
+├── Navbar.jsx
+├── Patients.jsx
+├── SearchForm.jsx
+├── Specialisation.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+---
+
+## ⚙️ Installation & Setup
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/medify.git
+```
+
+### Navigate to Project Directory
+
+```bash
+cd medify
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+The application will be available at:
+
+```bash
+http://localhost:5173
+```
+
+---
+
+## 📋 Application Flow
+
+1. User selects a State.
+2. User selects a City.
+3. Medical centers are fetched using APIs.
+4. User browses available hospitals.
+5. User selects a hospital.
+6. User chooses a preferred date and time slot.
+7. Booking details are saved to Local Storage.
+8. User can view bookings on the Bookings page.
+
+---
+
+## 💾 Booking Data Structure
+
+```javascript
+const booking = {
+  hospitalName: selectedCenter["Hospital Name"],
+  address: selectedCenter["Address"],
+  city: selectedCenter["City"],
+  state: selectedCenter["State"],
+  day: selectedDay,
+  time: selectedTime,
+};
+```
+
+---
+
+## 🎯 Key Concepts Practiced
+
+- React Components
+- Props & State Management
+- React Hooks (useState, useEffect)
+- Conditional Rendering
+- Event Handling
+- API Integration
+- React Router
+- CSS Modules
+- Local Storage
+- Responsive Design
+
+---
+
+## 📸 Screenshots
+
+### Home Page
+(Add screenshot here)
+
+### Hospital Search Results
+(Add screenshot here)
+
+### Appointment Booking
+(Add screenshot here)
+
+### My Bookings Page
+(Add screenshot here)
+
+---
+
+## 🔗 Live Demo
+
+(Add your Netlify/Vercel deployment link here)
+
+Example:
+
+```text
+https://medify-app.vercel.app
+```
+
+---
+
+## 👨‍💻 Author
+
+**Akash Tirkey**
+
+Aspiring MERN Stack Developer
+
+GitHub: https://github.com/your-github-username
+
+LinkedIn: https://linkedin.com/in/your-linkedin-profile
+
+---
+
+## 📄 License
+
+This project was developed for learning, skill development, and portfolio purposes.
