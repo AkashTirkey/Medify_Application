@@ -90,7 +90,8 @@ const Hospitals = () => {
       const res = await axios.get(
         `https://meddata-backend.onrender.com/data?state=${state}&city=${city}`
       );
-      setHospitals(res.data);
+      const data = res.data;
+      setHospitals(data);
     };
 
     fetchHospitals();

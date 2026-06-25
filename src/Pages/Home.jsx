@@ -96,7 +96,7 @@ const handleStateChange = async (e) =>{
             Connect instantly with a 24x7 specialist or choose to video visit a
             particular doctor.
           </p>
-          <button>Find Centers</button>
+          <button >Find Centers</button>
         </div>
         <img src={doc} alt="Doctors_img" className={styles.heroImg} />
       </div>
