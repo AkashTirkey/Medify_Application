@@ -158,33 +158,9 @@ const booking = {
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-(Add screenshot here)
-
-### Hospital Search Results
-(Add screenshot here)
-
-### Appointment Booking
-(Add screenshot here)
-
-### My Bookings Page
-(Add screenshot here)
-
----
-
 ## 🔗 Live Demo
 
-(Add your Netlify/Vercel deployment link here)
-
-Example:
-
-```text
-https://medify-app.vercel.app
-```
-
----
+https://medifyapp-rho.vercel.app/
 
 ## 👨‍💻 Author
 
@@ -192,9 +168,9 @@ https://medify-app.vercel.app
 
 Aspiring MERN Stack Developer
 
-GitHub: https://github.com/your-github-username
+GitHub: https://github.com/AkashTirkey
 
-LinkedIn: https://linkedin.com/in/your-linkedin-profile
+LinkedIn: https://www.linkedin.com/in/akashtirkey-swe/
 
 ---
 
